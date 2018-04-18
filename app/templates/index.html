@@ -4,5 +4,12 @@
 <div class="container">
 	<h1 class="text-center">Welcome to Flask Base App</h1>	
 </div>
+	{% for post in posts%}
+		<ul>
+
+			<li>{{post.title}}</li>
+
+		</ul>
+	{% endfor %}
 
 {% endblock %}
