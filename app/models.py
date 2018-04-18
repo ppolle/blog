@@ -11,3 +11,9 @@ class Post(db.Model):
 	
 	def __repr__(self):
 		return f'User {self.post}'
+
+class Comment(db.Model):
+	__tablename__ = 'comments'
+	id = db.Column(db.Integer,primary_key = True)
+	comment = db.Column(db.String(255))
+	comments= db.relationship('Post',backref = 'post',lazy="dynamic")
