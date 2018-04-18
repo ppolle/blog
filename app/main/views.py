@@ -22,5 +22,5 @@ def new_post():
 		
 		return redirect(url_for('.index',title =  title))
 
-		title = "Create New Post"
-		return render_template('posts/create.html',form =form)
+	title = "Create New Post"
+	return render_template('posts/create.html',form =form)
