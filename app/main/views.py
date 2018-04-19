@@ -1,8 +1,9 @@
-from flask import render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for
 from . import main
 from .forms import CreatePostForm
 from ..models import Post,Comment
 from .. import db
+
 # Views
 @main.route('/')
 def index():
@@ -12,7 +13,10 @@ def index():
 
 @main.route('/blog/single/<int:id>')
 def single(id):
-	pass
+	post = Post.query.get(id)
+
+	return render_template('single.html',post = post)
+
 
 
 

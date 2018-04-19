@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container">
-	<h1 class="text-center">Welcome to Flask Base App</h1>	
+	<h1 class="text-center">Welcome to My Blog</h1>	
 </div>
 	{% for post in posts%}
 		<ul>
 
-			<li>{{post.title}}</li>
+			<li><a href="{{url_for('main.single',id = post.id)}}">{{post.title}}</a></li>
 
 		</ul>
 	{% endfor %}
