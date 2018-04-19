@@ -10,6 +10,12 @@ def index():
 	title = 'Flask Base'
 	return render_template('index.html',title = title,posts = posts)
 
+@main.route('/blog/single/<int:id>')
+def single(id):
+	pass
+
+
+
 @main.route('/admin/create_post',methods = ['GET','POST'])
 def new_post():
 	form = CreatePostForm()
