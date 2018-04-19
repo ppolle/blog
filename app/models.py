@@ -18,7 +18,9 @@ class Post(db.Model):
 class Comment(db.Model):
 	__tablename__ = 'comments'
 	id = db.Column(db.Integer,primary_key = True)
-	comment = db.Column(db.String(255))
+	comment = db.Column(db.String(max))
+	name = db.Column(db.String(255))
+	email = db.Column(db.String(255))
 	post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
 
 	def __repr__(self):

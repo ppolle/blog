@@ -1,11 +1,32 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
 <div class="container">
 	Post Title: {{post.title}}
 	<br>
 	Post Body : {{post.post}}
+	<div class="row">
+		<div class="col-md-6">
+			{{wtf.quick_form(commentForm)}}
+		</div>
+		<div class="col-md-6">
+		{% if blogComments%}
+			{% for comment in blogComments%}
+					<p>Name:{{comment.name}}<br>
+						Comment:{{comment.comment}}	
+					</p>
+			{% endfor%}
+		{% else %}
+			<p>This Post Currently Does Not Have Comments</p>
+		{% endif %}
+			
+			
+		</div>
+		
+	</div>
+
 </div>
-	
+
 
 {% endblock %}
