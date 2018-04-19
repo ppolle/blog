@@ -48,4 +48,4 @@ def new_post():
 		return redirect(url_for('main.index'))
 
 	title = "Create New Post"
-	return render_template('posts/create.html',form =form, title= title)
+	return render_template('post/create.html',form =form, title= title)
