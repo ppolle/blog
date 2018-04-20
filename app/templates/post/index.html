@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+	<div class="container">
+	<h1 class="text-center">View All Blog Posts</h1>
+	<div class="col-md-0"></div>
+	<div class="col-md-12">
+		<table class="table table-bordered hover">
+			<tr>
+			    <th></th>
+			    <th>Title</th> 
+			    <th>Post</th>
+			    <th></th>
+
+			 </tr>
+			 {% for post in posts%}
+				 <tr>
+				    <td></td>
+				    <td>{{post.title}}</td> 
+				    <td>{{post.post | truncate(70)}}</td>
+				    <td>
+				    	<a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"> View Article</a>
+				    	<a href="" class="btn btn-sm btn-danger">Delete Article</a>
+				    </td>
+				 </tr>
+			 {% endfor%}
+
+			 
+		  
+		</table>
+	</div>
+	<div class="col-md-2"></div>
+	</div>
+  
+{% endblock %}
+
