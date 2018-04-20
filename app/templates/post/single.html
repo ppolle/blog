@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+	<div class="container">
+		<h1 class="text-center">Admin Single Post View</h1>	
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			Title :{{post.title}}<br>
+			Post : {{post.post}}
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+  
+{% endblock %}
+
