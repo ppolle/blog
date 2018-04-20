@@ -3,13 +3,16 @@
 {% block content %}
 <div class="container">
 	<h1 class="text-center">Welcome to My Blog</h1>	
-</div>
-	{% for post in posts%}
-		<ul>
 
-			<li><a href="{{url_for('main.single',id = post.id)}}">{{post.title}}</a></li>
-
-		</ul>
+	{% for post in posts |batch(3)%}
+		<div class="row">
+			{% for article in post%}
+				<div class="col-md-4">
+					
+					<a href="{{url_for('main.single',id = article.id)}}">{{article.title}}</a>
+				</div>
+			{% endfor %}
+		</div>
 	{% endfor %}
-
+</div>
 {% endblock %}
