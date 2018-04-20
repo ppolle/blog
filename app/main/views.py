@@ -8,8 +8,9 @@ from .. import db
 @main.route('/')
 def index():
 	posts = Post.query.all()
-	title = 'Flask Base'
-	return render_template('index.html',title = title,posts = posts)
+	recentPosts = Post.query.order_by(Post.id.desc()).limit(6)
+	title = 'Mhenga Petero'
+	return render_template('index.html',title = title,posts = posts,recentPosts = recentPosts)
 
 @main.route('/blog/single/<int:id>',methods = ['GET','POST'])
 def single(id):

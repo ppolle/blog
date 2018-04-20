@@ -4,7 +4,7 @@ from .forms import CreatePostForm
 from ..models import Post,Comment
 from .. import db
 
-@post.route('/admin/create_post',methods = ['GET','POST'])
+@post.route('/create_post',methods = ['GET','POST'])
 def new_post():
 	form = CreatePostForm()
 
@@ -16,8 +16,22 @@ def new_post():
 		db.session.add(blogpost)
 		db.session.commit()
 		
-		
-		return redirect(url_for('main.index'))
+		post = Post.query.order_by(Post.id.desc()).first()
+		return redirect(url_for('post.single',id = post.id))
 
 	title = "Create New Post"
 	return render_template('post/create.html',form =form, title= title)
+
+@post.route('/single/<int:id>')
+def single(id):
+	post = Post.query.get(id)
+
+	title = post.title
+	return render_template('post/single.html',title=title,post=post)
+
+@post.route('/index')
+def index():
+	posts = Post.query.all()
+
+	title = 'All Posts'
+	return render_template('post/index.html',title = title, posts = posts)

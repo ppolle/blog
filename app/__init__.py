@@ -38,6 +38,6 @@ def create_app(config_name):
     app.register_blueprint(main_blueprint)
 
     from .post import post as post_blueprint
-    app.register_blueprint(post_blueprint)
+    app.register_blueprint(post_blueprint,url_prefix = '/admin')
 
     return app
