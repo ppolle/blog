@@ -36,3 +36,11 @@ def index():
 
 	title = 'All Posts'
 	return render_template('post/index.html',title = title, posts = posts)
+
+@post.route('delete/<int:id>')
+def delete_comment(id):
+	comment = Comment.query.get(id)
+	db.session.delete(comment)
+	db.session.commit()
+
+	return redirect(url_for('post.single',id = comment.post_id))
