@@ -7,6 +7,7 @@
 		<div class="col-md-2">
 			<a href="{{url_for('post.index')}}" class="btn btn-sm btn-primary btn-block"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View All Posts</a>
 			<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"> Create Blog Post</a>
+			<a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-success btn-block"> Update Blog Post</a>
 			<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger btn-block"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
 		</div>
 		<div class="col-md-8">

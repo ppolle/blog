@@ -37,7 +37,7 @@ def index():
 	title = 'All Posts'
 	return render_template('post/index.html',title = title, posts = posts)
 
-@post.route('deleteComment/<int:id>')
+@post.route('/deleteComment/<int:id>')
 def delete_comment(id):
 	comment = Comment.query.get(id)
 	db.session.delete(comment)
@@ -45,7 +45,7 @@ def delete_comment(id):
 
 	return redirect(url_for('post.single',id = comment.post_id))
 
-@post.route('deletePost/<int:id>')
+@post.route('/deletePost/<int:id>')
 def delete_post(id):
 	post = Post.query.get(id)
 	db.session.delete(post)
@@ -53,13 +53,13 @@ def delete_post(id):
 
 	return redirect(url_for('post.index'))
 
-@post.route('update/<int:id>')
+@post.route('/update/<int:id>',methods= ['GET','POST'])
 def update(id):
 	postForm = UpdatePostForm()
 	post = Post.query.get(id)
 
 	if postForm.validate_on_submit():
-		post.update(title = postForm.title.data, post = postForm.post.data)
+		Post.query.filter_by(id = id).update({"title":postForm.title.data, "post":postForm.post.data})
 		db.session.commit()
 
 		return redirect(url_for('post.single',id = id))
@@ -67,4 +67,5 @@ def update(id):
 	postForm.title.data = post.title
 	postForm.post.data = post.post
 
-	return render_template('update.html',postForm = postForm)
+	return render_template('post/update.html',postForm = postForm)
+#single_user = User.query.filter_by(id = 1).update({"username": "James Muriuki"})
