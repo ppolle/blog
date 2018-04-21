@@ -3,6 +3,7 @@ from . import main
 from .forms import CreateCommentForm
 from ..models import Post,Comment
 from .. import db
+import markdown2 
 
 # Views
 @main.route('/')
@@ -28,5 +29,6 @@ def single(id):
 		return redirect(url_for('main.single',id = id))
 	
 	title = post.title
-	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments)
+	postBody = markdown2.markdown(post.post,extras=["code-friendly", "fenced-code-blocks"])
+	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments, postBody = postBody)
 

@@ -3,6 +3,7 @@ from . import post
 from .forms import CreatePostForm,UpdatePostForm
 from ..models import Post,Comment
 from .. import db
+import markdown2
 
 @post.route('/create_post',methods = ['GET','POST'])
 def new_post():
@@ -28,7 +29,8 @@ def single(id):
 	comments = Comment.query.filter_by(post_id = id).all()
 
 	title = post.title
-	return render_template('post/single.html',title=title,post=post,comments = comments)
+	postBody = markdown2.markdown(post.post,extras=["code-friendly", "fenced-code-blocks"])
+	return render_template('post/single.html',title=title,post=post,comments = comments,postBody = postBody)
 
 @post.route('/index')
 def index():
@@ -68,4 +70,3 @@ def update(id):
 	postForm.post.data = post.post
 
 	return render_template('post/update.html',postForm = postForm)
-#single_user = User.query.filter_by(id = 1).update({"username": "James Muriuki"})

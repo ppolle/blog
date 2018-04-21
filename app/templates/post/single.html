@@ -6,13 +6,13 @@
 		<h1 class="text-center">Admin Single Post View</h1>	
 		<div class="col-md-2">
 			<a href="{{url_for('post.index')}}" class="btn btn-sm btn-primary btn-block"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View All Posts</a>
-			<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"> Create Blog Post</a>
-			<a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-success btn-block"> Update Blog Post</a>
+			<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Blog Post</a>
+			<a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-info btn-block"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Blog Post</a>
 			<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger btn-block"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
 		</div>
 		<div class="col-md-8">
 			Title :{{post.title}}<br>
-			Post : {{post.post}}
+			Post : {{postBody| safe}}
 
 		</div>
 		<div class="col-md-2"></div>
@@ -38,7 +38,7 @@
 				    <td>{{comment.email | truncate(70)}}</td>
 				    <td>{{comment.comment}}</td>
 				    <td>
-				    	<a href="{{url_for('post.delete_comment',id = comment.id)}}" class="btn btn-sm btn-danger">Delete Article</a>
+				    	<a href="{{url_for('post.delete_comment',id = comment.id)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#myModal"> Delete Post</a>
 				    </td>
 				 </tr>
 			 {% endfor%}
@@ -54,6 +54,7 @@
 		<div class="col-md-2"></div>
 	</div>
 	</div>
+
   
 {% endblock %}
 

@@ -11,7 +11,7 @@
 			    
 			    <th>Title</th> 
 			    <th>Post</th>
-			    <th></th>
+			    <th>Navigation</th>
 
 			 </tr>
 			 {% for post in posts%}
@@ -22,6 +22,7 @@
 				    <td>
 				    	<a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Article</a>
 				    	<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
+				    	<a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Blog Post</a>
 				    </td>
 				 </tr>
 			 {% endfor%}
