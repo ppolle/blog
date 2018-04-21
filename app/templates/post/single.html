@@ -18,8 +18,8 @@
 		<div class="col-md-8">
 			
 			 {%if comments%}
-			 {% for comment in comments%}
-			 <table class="table table-bordered hover">
+			 
+			<table class="table table-bordered hover">
 			<tr>
 			    
 			    <th>Name</th> 
@@ -28,6 +28,7 @@
 			    <th></th>
 
 			 </tr>
+			 {% for comment in comments%}
 				 <tr>
 				   
 				    <td>{{comment.name}}</td> 
@@ -37,10 +38,11 @@
 				    	<a href="{{url_for('post.delete_comment',id = comment.id)}}" class="btn btn-sm btn-danger">Delete Article</a>
 				    </td>
 				 </tr>
-				 </table>
 			 {% endfor%}
+				 </table>
+			 
 			 {%else%}
-			 <p class>This post has no comment yet!</p>
+			 <h2 class="text-center">This post has no comment yet!</h2>
 			 {% endif %}
 			 
 		  
