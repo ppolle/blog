@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for
 from . import post
-from .forms import CreatePostForm
+from .forms import CreatePostForm,UpdatePostForm
 from ..models import Post,Comment
 from .. import db
 
@@ -52,3 +52,19 @@ def delete_post(id):
 	db.session.commit()
 
 	return redirect(url_for('post.index'))
+
+@post.route('update/<int:id>')
+def update(id):
+	postForm = UpdatePostForm()
+	post = Post.query.get(id)
+
+	if postForm.validate_on_submit():
+		post.update(title = postForm.title.data, post = postForm.post.data)
+		db.session.commit()
+
+		return redirect(url_for('post.single',id = id))
+
+	postForm.title.data = post.title
+	postForm.post.data = post.post
+
+	return render_template('update.html',postForm = postForm)

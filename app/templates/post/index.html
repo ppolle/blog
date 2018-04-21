@@ -20,8 +20,8 @@
 				    <td>{{post.title}}</td> 
 				    <td>{{post.post | truncate(70)}}</td>
 				    <td>
-				    	<a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"> View Article</a>
-				    	<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger">Delete Article</a>
+				    	<a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Article</a>
+				    	<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
 				    </td>
 				 </tr>
 			 {% endfor%}
