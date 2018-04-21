@@ -13,6 +13,36 @@
 			Post : {{post.post}}
 		</div>
 		<div class="col-md-2"></div>
+		<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<table class="table table-bordered hover">
+			<tr>
+			    
+			    <th>Name</th> 
+			    <th>Email</th>
+			    <th>Comment</th>
+			    <th></th>
+
+			 </tr>
+			 {% for comment in comments%}
+				 <tr>
+				   
+				    <td>{{comment.name}}</td> 
+				    <td>{{comment.email | truncate(70)}}</td>
+				    <td>{{comment.comment}}</td>
+				    <td>
+				    	<a href="{{url_for('post.single',id = comment.post_id)}}" class="btn btn-sm btn-danger">Delete Article</a>
+				    </td>
+				 </tr>
+			 {% endfor%}
+
+			 
+		  
+		</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
 	</div>
   
 {% endblock %}

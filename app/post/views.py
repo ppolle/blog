@@ -25,9 +25,10 @@ def new_post():
 @post.route('/single/<int:id>')
 def single(id):
 	post = Post.query.get(id)
+	comments = Comment.query.filter_by(post_id = id).all()
 
 	title = post.title
-	return render_template('post/single.html',title=title,post=post)
+	return render_template('post/single.html',title=title,post=post,comments = comments)
 
 @post.route('/index')
 def index():
