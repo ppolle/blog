@@ -9,6 +9,11 @@
 		<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"> Create Blog Post</a>
 	</div>
 	<div class="col-md-8">
+		{%if post.image%}
+			<img src="{{url_for('static',filename=post.image)}}" alt="" class="img-thumbnail">
+		{%else%}
+			<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
+		{%endif%}
 		{{wtf.quick_form(postForm)}}
 		{{simplemde.load}}
 	</div>

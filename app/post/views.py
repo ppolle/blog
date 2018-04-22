@@ -67,12 +67,18 @@ def update(id):
 	post = Post.query.get(id)
 
 	if postForm.validate_on_submit():
-		Post.query.filter_by(id = id).update({"title":postForm.title.data, "post":postForm.post.data})
+		if 'image' in request.files:
+			filename = photos.save(request.files['image'])
+			path = f'photos/{filename}'
+
+		Post.query.filter_by(id = id).update({"title":postForm.title.data, "post":postForm.post.data,"image":path})
 		db.session.commit()
 		flash('Success! You have succesfully edited and updated your blog post')
 		return redirect(url_for('post.single',id = id))
 
 	postForm.title.data = post.title
 	postForm.post.data = post.post
+	title = f"Update {post.title}"
+	
 
-	return render_template('post/update.html',postForm = postForm)
+	return render_template('post/update.html',postForm = postForm,post = post,title =  title)

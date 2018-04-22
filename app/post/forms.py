@@ -9,6 +9,7 @@ class CreatePostForm(FlaskForm):
 	submit = SubmitField('Submit')
 
 class UpdatePostForm(FlaskForm):
-	title = StringField('Post title',validators=[Required()])
-	post = TextAreaField('Post Content')
+	title = StringField('Update Post title',validators=[Required()])
+	post = TextAreaField('Update Post Content')
+	image = FileField('Update Post Image',validators = [Required()])
 	submit = SubmitField('Update')
