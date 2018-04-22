@@ -8,3 +8,8 @@ class CreateCommentForm(FlaskForm):
 	email = StringField('Your Email Address',validators=[Required(),Email()])
 	comment = TextAreaField('Post Content',validators =[Required()])
 	submit = SubmitField('Submit')
+
+class AddSubscriberForm(FlaskForm):
+	name = StringField('Your Name',validators=[Required()])
+	email = StringField('Your Email Address',validators=[Required(),Email()])
+	submit = SubmitField('Subscribe')
