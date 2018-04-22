@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,flash
 from . import main
 from .forms import CreateCommentForm
 from ..models import Post,Comment
@@ -25,7 +25,7 @@ def single(id):
 		db.session.add(createComment)
 		db.session.commit()
 
-
+		flash(f'Success! Thank you for commenting')
 		return redirect(url_for('main.single',id = id))
 	
 	title = post.title

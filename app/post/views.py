@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,flash
 from . import post
 from .forms import CreatePostForm,UpdatePostForm
 from ..models import Post,Comment
@@ -18,6 +18,7 @@ def new_post():
 		db.session.commit()
 		
 		post = Post.query.order_by(Post.id.desc()).first()
+		flash(f'Success! You succesfully created a new blog post titled: {post.title}')
 		return redirect(url_for('post.single',id = post.id))
 
 	title = "Create New Post"
@@ -45,6 +46,7 @@ def delete_comment(id):
 	db.session.delete(comment)
 	db.session.commit()
 
+	flash(f'Success! You have succesfully deleted {comment.name}\'s comment!')
 	return redirect(url_for('post.single',id = comment.post_id))
 
 @post.route('/deletePost/<int:id>')
@@ -52,7 +54,7 @@ def delete_post(id):
 	post = Post.query.get(id)
 	db.session.delete(post)
 	db.session.commit()
-
+	flash('Success! You have succesfully deleted a blog post')
 	return redirect(url_for('post.index'))
 
 @post.route('/update/<int:id>',methods= ['GET','POST'])
@@ -63,7 +65,7 @@ def update(id):
 	if postForm.validate_on_submit():
 		Post.query.filter_by(id = id).update({"title":postForm.title.data, "post":postForm.post.data})
 		db.session.commit()
-
+		flash('Success! You have succesfully edited and updated your blog post')
 		return redirect(url_for('post.single',id = id))
 
 	postForm.title.data = post.title

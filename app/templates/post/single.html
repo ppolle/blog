@@ -3,7 +3,15 @@
 
 {% block content %}
 	<div class="container">
-		<h1 class="text-center">Admin Single Post View</h1>	
+		<h1 class="text-center">Admin Single Post View</h1>
+			
+		{% for message in get_flashed_messages() %}
+			<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+			</div>
+		{% endfor %}
+
 		<div class="col-md-2">
 			<a href="{{url_for('post.index')}}" class="btn btn-sm btn-primary btn-block"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View All Posts</a>
 			<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Blog Post</a>

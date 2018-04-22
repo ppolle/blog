@@ -4,6 +4,12 @@
 {% block content %}
 	<div class="container">
 	<h1 class="text-center">View All Blog Posts</h1>
+	{% for message in get_flashed_messages() %}
+			<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+			</div>
+	{% endfor %}
 	<div class="col-md-0"></div>
 	<div class="col-md-12">
 		<table class="table table-bordered hover">

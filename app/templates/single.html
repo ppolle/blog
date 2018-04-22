@@ -3,6 +3,13 @@
 
 {% block content %}
 <div class="container">
+	{% for message in get_flashed_messages() %}
+			<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+			</div>
+	{% endfor %}
+	
 	Post Title: {{post.title}}
 	<br>
 	Post Body : {{postBody| safe}}
