@@ -9,7 +9,13 @@
 			{{ message }}
 			</div>
 	{% endfor %}
-	
+
+	{%if post.image%}
+			<img src="{{url_for('static',filename=post.image)}}" alt="" class="img-thumbnail">
+		{%else%}
+			<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
+		{%endif%}
+
 	Post Title: {{post.title}}
 	<br>
 	Post Body : {{postBody| safe}}
