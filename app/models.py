@@ -14,7 +14,7 @@ class Post(db.Model):
 	comments = db.relationship('Comment',backref = 'role',lazy = 'dynamic')
 
 	def __repr__(self):
-		return f'User {self.post}'
+		return f'Post {self.post}'
 
 class Comment(db.Model):
 	__tablename__ = 'comments'
@@ -25,4 +25,13 @@ class Comment(db.Model):
 	post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
 
 	def __repr__(self):
-		return f'User {self.comment}'
+		return f'Comment {self.comment}'
+
+class Subscribe(db.Model):
+	__tablename__ = 'subscribers'
+	id = db.Column(db.Integer,primary_key = True)
+	name = db.Column(db.String(255))
+	email = db.Column(db.String(255))
+
+	def __repr__(self):
+		return f'Subscriber {self.name}'

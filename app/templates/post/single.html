@@ -24,8 +24,9 @@
 		{%else%}
 			<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
 		{%endif%}
+		<br>
 			Title :{{post.title}}<br>
-			Post : {{postBody| safe}}
+			Post : {{postBody |safe}}
 
 		</div>
 		<div class="col-md-2"></div>
