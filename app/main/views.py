@@ -30,6 +30,7 @@ def single(id):
 	commentForm = CreateCommentForm()
 	post = Post.query.get(id)
 	blogComments = Comment.query.filter_by(post_id = id).all()
+	recentPosts = Post.query.order_by(Post.id.desc()).limit(4)
 
 	if commentForm.validate_on_submit():
 		createComment = Comment(comment = commentForm.comment.data,name = commentForm.name.data,email = commentForm.email.data,post_id = id)
@@ -42,5 +43,5 @@ def single(id):
 	
 	title = post.title
 	postBody = markdown2.markdown(post.post,extras=["code-friendly", "fenced-code-blocks"])
-	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments, postBody = postBody)
+	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments, postBody = postBody,recentPosts = recentPosts)
 

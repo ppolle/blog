@@ -2,45 +2,132 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-<div class="container">
-	{% for message in get_flashed_messages() %}
-			<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ message }}
+<section class="banner-bottom">
+		<!--/blog-->
+		<div class="container">
+			<div class="row">
+				<!--left-->
+				<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+					<div class="blog-grid-top">
+						<div class="b-grid-top">
+							<div class="blog_info_left_grid">
+								<a href="single.html">
+									{%if post.image%}
+										<img src="{{url_for('static',filename=post.image)}}" alt="" class="img-thumbnail">
+									{%else%}
+										<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
+									{%endif%}
+								</a>
+							</div>
+							<div class="blog-info-middle">
+								<ul>
+									<li>
+										<a href="#">
+											<i class="far fa-calendar-alt"></i> {{ post.created_at.strftime('%B %d, %Y') }}</a>
+									</li>
+									<li class="mx-2">
+										<a href="#">
+											<i class="far fa-thumbs-up"></i> 201 Likes</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="far fa-comment"></i> {{ blogComments |count}} Comments</a>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+
+						<h3>
+							<a href="single.html">{{post.title}}</a>
+						</h3>
+						<p>{{postBody|safe}}</p>
+						
+					</div>
+
+					<div class="comment-top">
+						<h4>Comments</h4>
+						<div class="media">
+						{% if blogComments%}
+							{% for comment in blogComments%}
+									
+							<img src="images/t1.jpg" alt="" class="img-fluid" />
+							<div class="media-body">
+								<h5 class="mt-0">{{comment.name}}</h5>
+								<p>{{comment.comment}}</p>
+
+							</div>
+							{% endfor%}
+						{% else %}
+							<h5 class="mt-0">No Comments Here. Be the first to comment</h5>
+						{% endif %}
+							
+						</div>
+					</div>
+					<div class="comment-top">
+						<h4>Leave a Comment</h4>
+						<div class="comment-bottom">
+							
+								{{wtf.quick_form(commentForm)}}
+							
+						</div>
+					</div>
+				</div>
+
+				<!--//left-->
+				<!--right-->
+				<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+					<div class="right-blog-info text-left">
+						<div class="tech-btm">
+							<img src="{{url_for('static',filename='userDist/images/banner1.jpg')}}" class="img-fluid" alt="">
+						</div>
+						<div class="tech-btm">
+							<h4>Sign up to our newsletter</h4>
+							<p>Pellentesque dui, non felis. Maecenas male </p>
+							<form action="#" method="post">
+								<input type="email" placeholder="Email" required="">
+								<input type="submit" value="Subscribe">
+							</form>
+
+						</div>
+						
+						<div class="tech-btm">
+							<h4>Recent Posts</h4>
+							{%for recent in recentPosts%}
+							<div class="blog-grids row mb-3">
+								<div class="col-md-5 blog-grid-left">
+									<a href="single.html">
+										{%if recent.image%}
+										<img src="{{url_for('static',filename=recent.image)}}" alt="" class="img-thumbnail">
+									{%else%}
+										<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
+									{%endif%}
+									</a>
+								</div>
+								<div class="col-md-7 blog-grid-right">
+
+									<h5>
+										<a href="single.html">{{recent.post}} </a>
+									</h5>
+									<div class="sub-meta">
+										<span>
+											<i class="far fa-clock"></i> {{ recent.created_at.strftime('%B %d, %Y') }}</span>
+									</div>
+								</div>
+
+							</div>
+							{%endfor%}
+						
+							
+						</div>
+						
+						
+					</div>
+
+				</aside>
+				<!--//right-->
 			</div>
-	{% endfor %}
-
-	{%if post.image%}
-			<img src="{{url_for('static',filename=post.image)}}" alt="" class="img-thumbnail">
-		{%else%}
-			<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
-		{%endif%}
-
-	Post Title: {{post.title}}
-	<br>
-	Post Body : {{postBody| safe}}
-	<div class="row">
-		<div class="col-md-6">
-			{{wtf.quick_form(commentForm)}}
 		</div>
-		<div class="col-md-6">
-		{% if blogComments%}
-			{% for comment in blogComments%}
-					<p>Name:{{comment.name}}<br>
-						Comment:{{comment.comment}}	
-					</p>
-			{% endfor%}
-		{% else %}
-			<p>This Post Currently Does Not Have Comments</p>
-		{% endif %}
-			
-			
-		</div>
-		
-	</div>
-	
-
-</div>
-
+	</section>
 
 {% endblock %}

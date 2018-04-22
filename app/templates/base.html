@@ -1,7 +1,22 @@
-{% extends 'bootstrap/base.html'%}
+
 
 {%block styles%}
-  {{super()}}
+  
+  	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="{{url_for('static',filename='userDist/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{{url_for('static',filename='userDist/css/single.css')}}">
+	<link href="{{url_for('static',filename='userDist/css/style.css')}}" rel='stylesheet' type='text/css' />
+	<link href="{{url_for('static',filename='userDist/css/fontawesome-all.css')}}" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
 
   <!--Importing the simple mde css and js files  -->
   {{ simplemde.css}}
@@ -12,4 +27,52 @@
 {% block navbar %}
   {%include 'navbar.html'%}
 {%endblock%}
+
+{%block content%}
+
+{%endblock%}
+
+{% block scripts%}
+<script src="{{url_for('static',filename='userDist/js/jquery-2.2.3.min.js')}}"></script>
+
+	<!-- //js -->
+	<!--/ start-smoth-scrolling -->
+	<script src="{{url_for('static',filename='userDist/js/move-top.js')}}"></script>
+	<script src="{{url_for('static',filename='userDist/js/easing.js')}}"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+
+	<script>
+		$(document).ready(function () {
+			/*
+									var defaults = {
+							  			containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+							 		};
+									*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	
+	<!-- //Custom-JavaScript-File-Links -->
+	<script src="{{url_for('static',filename='userDist/js/bootstrap.js')}}"></script>
+
+
+
+{% endblock%}
 

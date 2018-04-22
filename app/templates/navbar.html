@@ -1,23 +1,104 @@
-<div class="navbar navbar-inverse" role="navigation">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/"> Polle's Blog </a>
-          </div>
-          <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                  <li><a href="/">Home</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{url_for('post.new_post')}}">Create Post</a></li>
-              </ul>
-          </div>
+<header>
+    <div class="top-bar_sub_w3layouts container-fluid">
+      <div class="row">
+        <div class="col-md-4 logo text-left">
+          <a class="navbar-brand" href="/">
+             Boss</a>
+        </div>
+        <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+          <span>Welcome Back!</span>
+          <span class="mx-lg-4 mx-md-2  mx-1">
+            <a href="login.html">
+              <i class="fas fa-lock"></i> Sign In</a>
+          </span>
+          <span>
+            <a href="register.html">
+              <i class="far fa-user"></i> Register</a>
+          </span>
+        </div>
+        <div class="col-md-4 log-icons text-right">
 
+          <ul class="social_list1 mt-3">
 
+            <li>
+              <a href="#" class="facebook1 mx-2">
+                <i class="fab fa-facebook-f"></i>
+
+              </a>
+            </li>
+            <li>
+              <a href="#" class="twitter2">
+                <i class="fab fa-twitter"></i>
+
+              </a>
+            </li>
+            <li>
+              <a href="#" class="dribble3 mx-2">
+                <i class="fab fa-dribbble"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="pin">
+                <i class="fab fa-pinterest-p"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="header_top" id="home">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler navbar-toggler-right mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                Features
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#"></a>
+                <a class="dropdown-item" href="blog1.html">Standard Blog</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="blog2.html">2 Column Blog</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="blog3.html">3 Column Blog</a>
+
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+
+          </ul>
+         
+
+
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <div class="banner-inner">
   </div>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="index.html">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Blog2</li>
+  </ol>
