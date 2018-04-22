@@ -46,7 +46,7 @@ def delete_comment(id):
 	db.session.delete(comment)
 	db.session.commit()
 
-	flash(f'Success! You have succesfully deleted {comment.name}\'s comment!')
+	flash(f'Success! You have succesfully deleted {comment.name}\'s comment on this blog post!')
 	return redirect(url_for('post.single',id = comment.post_id))
 
 @post.route('/deletePost/<int:id>')
@@ -54,7 +54,7 @@ def delete_post(id):
 	post = Post.query.get(id)
 	db.session.delete(post)
 	db.session.commit()
-	flash('Success! You have succesfully deleted a blog post')
+	flash(f'Success! You have succesfully deleted a blog post titled: {post.title}')
 	return redirect(url_for('post.index'))
 
 @post.route('/update/<int:id>',methods= ['GET','POST'])
