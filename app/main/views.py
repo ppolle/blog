@@ -23,7 +23,10 @@ def index():
 		return redirect(url_for('main.index'))
 
 	title = 'Mhenga Petero'
-	return render_template('index.html',title = title,posts = posts,recentPosts = recentPosts,subscribeForm = subscribeForm)
+	for post in posts:
+		postBody = markdown2.markdown(post.post,extras=["code-friendly", "fenced-code-blocks"])
+	breadcrumb = "Blog"
+	return render_template('index.html',title = title,posts = posts,recentPosts = recentPosts,subscribeForm = subscribeForm,postBody = postBody,breadcrumb= breadcrumb)
 
 @main.route('/blog/single/<int:id>',methods = ['GET','POST'])
 def single(id):
@@ -42,6 +45,7 @@ def single(id):
 		return redirect(url_for('main.single',id = id))
 	
 	title = post.title
+	breadcrumb = "Blog"
 	postBody = markdown2.markdown(post.post,extras=["code-friendly", "fenced-code-blocks"])
-	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments, postBody = postBody,recentPosts = recentPosts)
+	return render_template('single.html',post = post, commentForm = commentForm,title=title,blogComments = blogComments, postBody = postBody,recentPosts = recentPosts, breadcrumb = breadcrumb)
 

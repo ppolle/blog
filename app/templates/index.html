@@ -2,6 +2,161 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
+<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			{% for message in get_flashed_messages() %}
+				<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				{{ message }}
+				</div>
+			{% endfor %}
+
+			<h3 class="tittle">Blog Posts</h3>
+			<div class="row inner-sec">
+				<!--left-->
+				<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+				{% for post in posts |batch(2)%}
+
+					<div class="row mb-4">
+						{% for article in post%}
+							<div class="col-md-6 card">
+							<a href="{{url_for('main.single',id = article.id)}}">
+								
+								{%if article.image%}
+										<img src="{{url_for('static',filename=article.image)}}" class="card-img-top img-fluid" alt="article.title">
+									{%else%}
+										<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="article.title" class="card-img-top img-fluid">
+									{%endif%}
+							</a>
+							<div class="card-body">
+								<ul class="blog-icons my-4">
+									<li>
+										<a href="#">
+											<i class="far fa-calendar-alt"></i> {{ article.created_at.strftime('%B %d, %Y') }}</a>
+									</li>
+									<li class="mx-2">
+										<a href="#">
+											<i class="far fa-comment"></i> 21</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fas fa-eye"></i> 2000</a>
+									</li>
+
+								</ul>
+								<h5 class="card-title ">
+									<a href="{{url_for('main.single',id = article.id)}}">{{article.title}}</a>
+								</h5>
+								<p class="card-text mb-3">{{postBody |safe}}</p>
+								<a href="" class="btn btn-primary read-m">Read More</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+					
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-left mt-4">
+							<li class="page-item disabled">
+								<a class="page-link" href="#" tabindex="-1">Previous</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="#">1</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="#">2</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="#">3</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" href="#">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<!--//left-->
+				<!--right-->
+				<aside class="col-lg-4 agileits-w3ls-right-blog-con text-left">
+					<div class="right-blog-info text-left">
+						<div class="tech-btm">
+							<img src="{{url_for('static',filename='userDist/images/banner1.jpg')}}" class="card-img-top img-fluid" alt="">
+						</div>
+						<div class="tech-btm">
+							<h4>Subscribe for my Blog Alerts</h4>
+							<p>Be in the loop whenever a new article is post </p>
+								{{wtf.quick_form(subscribeForm)}}
+
+						</div>
+				
+		
+						
+									
+					<div class="tech-btm">
+						<h4>Recent Posts</h4>
+
+						<div class="blog-grids row mb-3 text-left">
+							<div class="col-md-5 blog-grid-left">
+								<a href="single.html">
+									<img src="images/1.jpg" class="card-img-top img-fluid" alt="">
+								</a>
+							</div>
+							<div class="col-md-7 blog-grid-right">
+
+								<h5>
+									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
+								</h5>
+								<div class="sub-meta">
+									<span>
+										<i class="far fa-clock"></i> 20 Jan, 2018</span>
+								</div>
+							</div>
+
+						</div>
+						<div class="blog-grids row mb-3 text-left">
+							<div class="col-md-5 blog-grid-left">
+								<a href="single.html">
+									<img src="images/5.jpg" class="card-img-top img-fluid" alt="">
+								</a>
+							</div>
+							<div class="col-md-7 blog-grid-right">
+
+								<h5>
+									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
+								</h5>
+								<div class="sub-meta">
+									<span>
+										<i class="far fa-clock"></i> 20 Jan, 2018</span>
+								</div>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="blog-grids row mb-3 text-left">
+							<div class="col-md-5 blog-grid-left">
+								<a href="single.html">
+									<img src="images/3.jpg" class="card-img-top img-fluid" alt="">
+								</a>
+							</div>
+							<div class="col-md-7 blog-grid-right">
+								<h5>
+									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
+								</h5>
+								<div class="sub-meta">
+									<span>
+										<i class="far fa-clock"></i> 20 Feb, 2018</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</aside>
+				<!--//right-->
+				</div>
+			</div>
+	</section>
+
+<!-- Start of old content -->
 <div class="container">
 	<h1 class="text-center">Welcome to My Blog</h1>	
 	{% for message in get_flashed_messages() %}

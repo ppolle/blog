@@ -3,8 +3,15 @@
 
 {% block content %}
 <section class="banner-bottom">
+
 		<!--/blog-->
 		<div class="container">
+		{% for message in get_flashed_messages() %}
+			<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+			</div>
+		{% endfor %}
 			<div class="row">
 				<!--left-->
 				<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
@@ -25,10 +32,6 @@
 										<a href="#">
 											<i class="far fa-calendar-alt"></i> {{ post.created_at.strftime('%B %d, %Y') }}</a>
 									</li>
-									<li class="mx-2">
-										<a href="#">
-											<i class="far fa-thumbs-up"></i> 201 Likes</a>
-									</li>
 									<li>
 										<a href="#">
 											<i class="far fa-comment"></i> {{ blogComments |count}} Comments</a>
@@ -39,7 +42,7 @@
 						</div>
 
 						<h3>
-							<a href="single.html">{{post.title}}</a>
+							<a href="{{url_for('main.single',id = post.id)}}">{{post.title}}</a>
 						</h3>
 						<p>{{postBody|safe}}</p>
 						
@@ -53,8 +56,10 @@
 									
 							<img src="images/t1.jpg" alt="" class="img-fluid" />
 							<div class="media-body">
-								<h5 class="mt-0">{{comment.name}}</h5>
-								<p>{{comment.comment}}</p>
+								
+										<h5 class="mt-0">{{comment.name}}</h5>
+										<p>{{comment.comment}}</p>
+								
 
 							</div>
 							{% endfor%}
@@ -81,22 +86,14 @@
 						<div class="tech-btm">
 							<img src="{{url_for('static',filename='userDist/images/banner1.jpg')}}" class="img-fluid" alt="">
 						</div>
-						<div class="tech-btm">
-							<h4>Sign up to our newsletter</h4>
-							<p>Pellentesque dui, non felis. Maecenas male </p>
-							<form action="#" method="post">
-								<input type="email" placeholder="Email" required="">
-								<input type="submit" value="Subscribe">
-							</form>
-
-						</div>
+						
 						
 						<div class="tech-btm">
 							<h4>Recent Posts</h4>
 							{%for recent in recentPosts%}
 							<div class="blog-grids row mb-3">
 								<div class="col-md-5 blog-grid-left">
-									<a href="single.html">
+									<a href="{{url_for('main.single',id = recent.id)}}">
 										{%if recent.image%}
 										<img src="{{url_for('static',filename=recent.image)}}" alt="" class="img-thumbnail">
 									{%else%}
@@ -107,7 +104,7 @@
 								<div class="col-md-7 blog-grid-right">
 
 									<h5>
-										<a href="single.html">{{recent.post}} </a>
+										<a href="{{url_for('main.single',id = recent.id)}}">{{recent.title}} </a>
 									</h5>
 									<div class="sub-meta">
 										<span>
