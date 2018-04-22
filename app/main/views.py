@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from . import main
 from .forms import CreateCommentForm,AddSubscriberForm
-from ..models import Post,Comment
+from ..models import Post,Comment,Subscribe
 from .. import db
 import markdown2 
 
@@ -15,9 +15,9 @@ def index():
 
 	if subscribeForm.validate_on_submit():
 		addSubscriber = Subscribe(name = subscribeForm.name.data, email = subscribeForm.email.data)
-		db.session(addSubscriber)
+		db.session.add(addSubscriber)
 		db.session.commit()
-		flash(f'Thank you {subscribeForm.name.data,} for subscribing to my blog. A confirmatio email will be sent to you shortly')
+		flash(f'Thank you {subscribeForm.name.data} for subscribing to my blog. A confirmatio email will be sent to you shortly')
 		return redirect(url_for('main.index'))
 
 	title = 'Mhenga Petero'

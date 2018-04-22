@@ -4,6 +4,12 @@
 {% block content %}
 <div class="container">
 	<h1 class="text-center">Welcome to My Blog</h1>	
+	{% for message in get_flashed_messages() %}
+			<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+			</div>
+	{% endfor %}
 	<div class="row">
 		<div class="col-md-8">
 		{% for post in posts |batch(2)%}
@@ -34,7 +40,14 @@
 			</ul>
 		  </div>
 		</div>
-		<div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+			    <h3 class="panel-title">Subscribe here</h3>
+			</div>
+			<div class="panel-body">
+				{{wtf.quick_form(subscribeForm)}}
+			</div>
+
 			
 		</div>
 			
