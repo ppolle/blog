@@ -1,13 +1,15 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from . import post
 from .forms import CreatePostForm,UpdatePostForm
-from ..models import Post,Comment
+from ..models import Post,Comment,Subscribe
 from .. import db,photos
 import markdown2
+from ..email import mail_message
 
 @post.route('/create_post',methods = ['GET','POST'])
 def new_post():
 	form = CreatePostForm()
+	subscribers = Subscribe.query.all()
 
 	if form.validate_on_submit():
 		if 'image' in request.files:
@@ -22,6 +24,9 @@ def new_post():
 		db.session.commit()
 		
 		post = Post.query.order_by(Post.id.desc()).first()
+		for subscriber in subscribers:
+			mail_message('New Blog Alert','emails/blogAlert',subscriber.email,subscriber = subscriber)
+
 		flash(f'Success! You succesfully created a new blog post titled: {post.title}')
 		return redirect(url_for('post.single',id = post.id))
 
@@ -39,7 +44,7 @@ def single(id):
 
 @post.route('/index')
 def index():
-	posts = Post.query.all()
+	posts = Post.query.order_by(Post.id.desc()).all()
 
 	title = 'All Posts'
 	return render_template('post/index.html',title = title, posts = posts)

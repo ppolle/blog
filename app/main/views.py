@@ -4,6 +4,7 @@ from .forms import CreateCommentForm,AddSubscriberForm
 from ..models import Post,Comment,Subscribe
 from .. import db
 import markdown2 
+from ..email import mail_message
 
 # Views
 @main.route('/',methods = ['GET','POST'])
@@ -18,6 +19,7 @@ def index():
 		db.session.add(addSubscriber)
 		db.session.commit()
 		flash(f'Thank you {subscribeForm.name.data} for subscribing to my blog. A confirmatio email will be sent to you shortly')
+		mail_message('Hello There New Subscriber','emails/subscribe',addSubscriber.email,addSubscriber = addSubscriber)
 		return redirect(url_for('main.index'))
 
 	title = 'Mhenga Petero'

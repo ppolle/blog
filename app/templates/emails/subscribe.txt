@@ -1,0 +1,6 @@
+Hello {{addSubscriber.name}}
+
+Welcome to Hekaya za Mhenga Petero
+
+Karibu katika mtandao wangu ambao nimekusudia kuhakikisha kuwa nitakua nakupatia hadithi za maisha yanga mithili ya riwaya ya kitabu. Nashkuru ya kwamba uko katika safari hii na mimi.
+Shukran mwana dunia mwenzangu. 

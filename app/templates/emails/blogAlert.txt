@@ -1,0 +1,3 @@
+Hello {{subscriber.name}}
+
+Another day, another blog alert. Head on over to hekaya.com for the latest blog post.
