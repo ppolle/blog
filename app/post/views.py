@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,redirect,url_for,flash
 from . import post
 from .forms import CreatePostForm,UpdatePostForm
 from ..models import Post,Comment
-from .. import db
+from .. import db,photos
 import markdown2
 
 @post.route('/create_post',methods = ['GET','POST'])
@@ -10,8 +10,12 @@ def new_post():
 	form = CreatePostForm()
 
 	if form.validate_on_submit():
+		if 'image' in request.files:
+			filename = photos.save(request.files['image'])
+			path = f'photos/{filename}'
+
 		 
-		blogpost =  Post(title = form.title.data,post = form.post.data)
+		blogpost =  Post(title = form.title.data,post = form.post.data,image = path)
 
 
 		db.session.add(blogpost)
