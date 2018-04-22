@@ -1,17 +1,27 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 from . import main
-from .forms import CreateCommentForm
+from .forms import CreateCommentForm,AddSubscriberForm
 from ..models import Post,Comment
 from .. import db
 import markdown2 
 
 # Views
-@main.route('/')
+@main.route('/',methods = ['GET','POST'])
 def index():
 	posts = Post.query.all()
 	recentPosts = Post.query.order_by(Post.id.desc()).limit(6)
+
+	subscribeForm = AddSubscriberForm()
+
+	if subscribeForm.validate_on_submit():
+		addSubscriber = Subscribe(name = subscribeForm.name.data, email = subscribeForm.email.data)
+		db.session(addSubscriber)
+		db.session.commit()
+		flash(f'Thank you {subscribeForm.name.data,} for subscribing to my blog. A confirmatio email will be sent to you shortly')
+		return redirect(url_for('main.index'))
+
 	title = 'Mhenga Petero'
-	return render_template('index.html',title = title,posts = posts,recentPosts = recentPosts)
+	return render_template('index.html',title = title,posts = posts,recentPosts = recentPosts,subscribeForm = subscribeForm)
 
 @main.route('/blog/single/<int:id>',methods = ['GET','POST'])
 def single(id):
