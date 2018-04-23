@@ -94,60 +94,33 @@
 									
 					<div class="tech-btm">
 						<h4>Recent Posts</h4>
-
-						<div class="blog-grids row mb-3 text-left">
+						{% for post in recentPosts%}
+						  <div class="blog-grids row mb-3 text-left">
 							<div class="col-md-5 blog-grid-left">
-								<a href="single.html">
-									<img src="images/1.jpg" class="card-img-top img-fluid" alt="">
+								<a href="{{url_for('main.single',id = post.id)}}">
+								{%if post.image%}
+									<img src="{{url_for('static',filename = post.image)}}" class="card-img-top img-fluid" alt="">
+									{%else%}
+									<img src="{{url_for('static',filename = 'photos/yes.jpg')}}" class="card-img-top img-fluid" alt="">
+								{%endif%}	
+								
 								</a>
 							</div>
 							<div class="col-md-7 blog-grid-right">
 
 								<h5>
-									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
+									<a href="{url_for('main.single',id = post.id)}}">{{post.title}}</a>
 								</h5>
 								<div class="sub-meta">
 									<span>
-										<i class="far fa-clock"></i> 20 Jan, 2018</span>
+										<i class="far fa-clock"></i>{{ post.created_at.strftime('%B %d, %Y') }}</span>
 								</div>
 							</div>
 
 						</div>
-						<div class="blog-grids row mb-3 text-left">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.html">
-									<img src="images/5.jpg" class="card-img-top img-fluid" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-
-								<h5>
-									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<i class="far fa-clock"></i> 20 Jan, 2018</span>
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="blog-grids row mb-3 text-left">
-							<div class="col-md-5 blog-grid-left">
-								<a href="single.html">
-									<img src="images/3.jpg" class="card-img-top img-fluid" alt="">
-								</a>
-							</div>
-							<div class="col-md-7 blog-grid-right">
-								<h5>
-									<a href="single.html">Pellentesque dui, non felis. Maecenas male non felis </a>
-								</h5>
-								<div class="sub-meta">
-									<span>
-										<i class="far fa-clock"></i> 20 Feb, 2018</span>
-								</div>
-							</div>
-
-						</div>
+					    {%endfor%}
+				
+						
 					</div>
 				</div>
 				</aside>
@@ -156,59 +129,4 @@
 			</div>
 	</section>
 
-<!-- Start of old content -->
-<div class="container">
-	<h1 class="text-center">Welcome to My Blog</h1>	
-	{% for message in get_flashed_messages() %}
-			<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ message }}
-			</div>
-	{% endfor %}
-	<div class="row">
-		<div class="col-md-8">
-		{% for post in posts |batch(2)%}
-
-			<div class="row">
-				{% for article in post%}
-					<div class="col-md-6">
-						
-						<a href="{{url_for('main.single',id = article.id)}}">{{article.title}}</a>
-					</div>
-				{% endfor %}
-			</div>
-		{% endfor %}
-			
-		</div>
-		<div class="col-md-4">
-		<div class="panel panel-default">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Most Recent Posts</h3>
-		  </div>
-		  <div class="panel-body">
-		    <ul class="list-group">
-		    {% for post in recentPosts%}
-			  <a href="{{url_for('main.single',id = post.id)}}" class="list-group-item">{{post.title}}</a>
-		    {%endfor%}
-		    
-	
-			</ul>
-		  </div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-			    <h3 class="panel-title">Subscribe here</h3>
-			</div>
-			<div class="panel-body">
-				{{wtf.quick_form(subscribeForm)}}
-			</div>
-
-			
-		</div>
-			
-		</div>
-	</div>
-
-	
-</div>
-{% endblock %}
+{%endblock%}
