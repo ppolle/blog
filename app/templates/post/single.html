@@ -25,14 +25,15 @@
 			<img src="{{url_for('static',filename= 'photos/yes.jpg')}}" alt="" class="img-thumbnail">
 		{%endif%}
 		<br>
-			Title :{{post.title}}<br>
-			Post : {{postBody |safe}}
-
-		</div>
-		<div class="col-md-2"></div>
-		<div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-8">
+			<h3>Title</h3>
+			<p>
+			{{post.title}}
+			</p>     
+			<h3>Post</h3>
+			<p>
+		{{postBody |safe}}
+		</p>
+			<h3>Comments</h3>
 			
 			 {%if comments%}
 			 
@@ -61,12 +62,19 @@
 			 {%else%}
 			 <h3 class="">This post has no comment yet!</h3>
 			 {% endif %}
+		</div>
+		<div class="col-md-2"></div>
+		<div class="container">
+		<div class="col-md-2"></div>    
+		<div class="col-md-9">
+
 			 
 		  
 		
 		</div>
+		</div>
 		
-	</div>
+	
 	</div>
 
   
