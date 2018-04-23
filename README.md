@@ -27,7 +27,7 @@ The following are needed for the application to run on a local computer:
 * text editor (atom, VS code or sublime text)
 * Web browser
 * Admin Login credentials. This allows the admin(writer) to post a blog, delete and edit blogs posted and/orcomments posted by users.
-```
+
 ## Getting Started
 * Clone this repository to your local computer.
 * Ensure you have python3.6 installed in your computer.
