@@ -3,7 +3,7 @@ import os
 class Config:
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	UPLOADED_PHOTOS_DEST ='app/static/photos'
-	SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://peter:iamBOSS12@localhost/blog'
+	# SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://peter:iamBOSS12@localhost/blog'
 	SECRET_KEY = os.environ.get('SECRET_KEY')
 	
 	SIMPLEMDE_JS_IIFE = True
