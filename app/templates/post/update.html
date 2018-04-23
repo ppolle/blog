@@ -1,9 +1,9 @@
-{% extends 'base.html'%}
+{% extends 'adminBase.html'%}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
 	<div class="container">
-	<h1 class="text-center">Update Blog Post</h1>	
+	<h3 class="">Update Blog Post</h3>	
 	<div class="col-md-2">
 		<a href="{{url_for('post.index')}}" class="btn btn-sm btn-primary btn-block">View All Posts</a>
 		<a href="{{url_for('post.new_post')}}" class="btn btn-sm btn-success btn-block"> Create Blog Post</a>

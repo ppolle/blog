@@ -1,44 +1,44 @@
-{% extends 'base.html'%}
+{% extends 'adminBase.html'%}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-	<div class="container">
-	<h1 class="text-center">View All Blog Posts</h1>
-	{% for message in get_flashed_messages() %}
-			<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ message }}
-			</div>
-	{% endfor %}
-	<div class="col-md-0"></div>
-	<div class="col-md-12">
-		<table class="table table-bordered hover">
-			<tr>
-			    
-			    <th>Title</th> 
-			    <th>Post</th>
-			    <th>Navigation</th>
 
-			 </tr>
-			 {% for post in posts%}
-				 <tr>
-				    
-				    <td>{{post.title}}</td> 
-				    <td>{{post.post | truncate(70)}}</td>
-				    <td>
-				    	<a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Article</a>
-				    	<a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
-				    	<a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Blog Post</a>
-				    </td>
-				 </tr>
-			 {% endfor%}
+          <div class="container">
+          <h3 class="">View All Blog Posts</h3>
+          {% for message in get_flashed_messages() %}
+              <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ message }}
+              </div>
+          {% endfor %}
+          <div class="col-md-0"></div>
+          <div class="col-md-12">
+            <table class="table table-bordered hover">
+              <tr>
+                  
+                  <th>Title</th> 
+                  <th>Post</th>
+                  <th>Navigation</th>
 
-			 
-		  
-		</table>
-	</div>
-	<div class="col-md-2"></div>
-	</div>
+               </tr>
+               {% for post in posts%}
+                 <tr>
+                    
+                    <td>{{post.title}}</td> 
+                    <td>{{post.post | truncate(70)}}</td>
+                    <td>
+                      <a href="{{url_for('post.single',id = post.id)}}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Article</a>
+                      <a href="{{url_for('post.delete_post',id = post.id)}}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Article</a>
+                      <a href="{{url_for('post.update',id = post.id)}}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Blog Post</a>
+                    </td>
+                 </tr>
+               {% endfor%}
+
+               
+              
+            </table>
+          </div>
+          <div class="col-md-2"></div>
+          </div>
   
-{% endblock %}
-
+    {% endblock %}
