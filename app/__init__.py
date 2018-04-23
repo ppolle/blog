@@ -31,6 +31,7 @@ def create_app(config_name):
     db.init_app(app)
     mail.init_app(app)
     simple.init_app(app)
+    login_manager.init_app(app)
     
 
     # configure UploadSet
@@ -43,7 +44,7 @@ def create_app(config_name):
 
     from .post import post as blog_blueprint
     app.register_blueprint(blog_blueprint,url_prefix = '/admin')
-    
+
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
 
