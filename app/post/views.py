@@ -5,8 +5,10 @@ from ..models import Post,Comment,Subscribe
 from .. import db,photos
 import markdown2
 from ..email import mail_message
+from flask_login import login_required
 
 @post.route('/create_post',methods = ['GET','POST'])
+@login_required
 def new_post():
 	form = CreatePostForm()
 	subscribers = Subscribe.query.all()
@@ -34,6 +36,7 @@ def new_post():
 	return render_template('post/create.html',form =form, title= title)
 
 @post.route('/single/<int:id>')
+@login_required
 def single(id):
 	post = Post.query.get(id)
 	comments = Comment.query.filter_by(post_id = id).all()
@@ -43,6 +46,7 @@ def single(id):
 	return render_template('post/single.html',title=title,post=post,comments = comments,postBody = postBody)
 
 @post.route('/index')
+@login_required
 def index():
 	posts = Post.query.order_by(Post.id.desc()).all()
 
@@ -50,6 +54,7 @@ def index():
 	return render_template('post/index.html',title = title, posts = posts)
 
 @post.route('/deleteComment/<int:id>')
+@login_required
 def delete_comment(id):
 	comment = Comment.query.get(id)
 	db.session.delete(comment)
@@ -59,6 +64,7 @@ def delete_comment(id):
 	return redirect(url_for('post.single',id = comment.post_id))
 
 @post.route('/deletePost/<int:id>')
+@login_required
 def delete_post(id):
 	post = Post.query.get(id)
 	db.session.delete(post)
@@ -67,6 +73,7 @@ def delete_post(id):
 	return redirect(url_for('post.index'))
 
 @post.route('/update/<int:id>',methods= ['GET','POST'])
+@login_required
 def update(id):
 	postForm = UpdatePostForm()
 	post = Post.query.get(id)

@@ -2,7 +2,7 @@ from . import db
 from . import login_manager
 from flask_login import UserMixin
 from datetime import datetime
-from flask_admin.contrib.sqla import ModelView
+
 
 
 class Post(db.Model):
